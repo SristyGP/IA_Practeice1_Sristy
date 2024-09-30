@@ -35413,6 +35413,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Worker
       objectReference: {fileID: 0}
+    - target: {fileID: 1517084472377862667, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
+        type: 3}
+      propertyPath: Goal
+      value: 
+      objectReference: {fileID: 1423107471}
     - target: {fileID: 4429647094997668050, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49485,6 +49490,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 2124074624051785562, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
+        type: 3}
+      propertyPath: Goal
+      value: 
+      objectReference: {fileID: 404802726}
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49543,14 +49553,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423107474}
-    - targetCorrespondingSourceObject: {fileID: 448678556563260569, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1423107473}
-    - targetCorrespondingSourceObject: {fileID: 448678556563260569, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1423107472}
   m_SourcePrefab: {fileID: 100100000, guid: 6172e1b716cccfc4b8e6e491d4b0ab02, type: 3}
 --- !u!4 &1423107471 stripped
 Transform:
@@ -49558,32 +49560,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1423107470}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1423107472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519267780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14520660240db1547b1501033338da36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AnimationSpeedParameterName: 1
---- !u!114 &1423107473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519267780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0797e083116195408c02b1550923e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Goal: {fileID: 404802726}
 --- !u!195 &1423107474
 NavMeshAgent:
   m_ObjectHideFlags: 0
