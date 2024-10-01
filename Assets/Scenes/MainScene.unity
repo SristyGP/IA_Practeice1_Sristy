@@ -339,6 +339,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 13622322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &13982238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13982239}
+  m_Layer: 0
+  m_Name: Target_001
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &13982239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13982238}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.003274497, y: -0, z: -0, w: 0.99999464}
+  m_LocalPosition: {x: 30.16, y: 4.85, z: -30.56}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 582420368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &19902971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5360,8 +5391,8 @@ Transform:
   m_GameObject: {fileID: 199472265}
   serializedVersion: 2
   m_LocalRotation: {x: 0.003274497, y: -0, z: -0, w: 0.99999464}
-  m_LocalPosition: {x: 6.46, y: 4.79, z: -18.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 24.58, y: 4.92, z: -38.24}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 582420368}
@@ -12354,6 +12385,26 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: aa7b60bf2b306b24fb912cea2ef0939c, type: 2}
+    - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
+        type: 3}
+      propertyPath: 'waypoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 199472266}
+    - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
+        type: 3}
+      propertyPath: 'waypoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 13982239}
+    - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
+        type: 3}
+      propertyPath: 'waypoints.Array.data[2]'
+      value: 
+      objectReference: {fileID: 836544194}
     - target: {fileID: 4429647094997668050, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18532,6 +18583,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 199472266}
+  - {fileID: 13982239}
+  - {fileID: 836544194}
   - {fileID: 404802726}
   - {fileID: 1423107471}
   - {fileID: 1044502493}
@@ -27165,6 +27218,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &836544193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836544194}
+  m_Layer: 0
+  m_Name: Target_002
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &836544194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836544193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.003274497, y: -0, z: -0, w: 0.99999464}
+  m_LocalPosition: {x: 38.07, y: 4.93, z: -41.13}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 582420368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &836738369
 PrefabInstance:
