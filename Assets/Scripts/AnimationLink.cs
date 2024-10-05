@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AnimationLink : MonoBehaviour
 {
@@ -8,14 +9,17 @@ public class AnimationLink : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent m_NavAgentComponent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        
+       m_AnimatorComponent = transform.GetChild(0).GetComponent<Animator>();
+       m_NavAgentComponent = GetComponent<NavMeshAgent>();
     }
+    
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        m_AnimatorComponent.SetFloat(m_AnimationSpeedParameterName, m_NavAgentComponent.speed);
     }
+    
 }

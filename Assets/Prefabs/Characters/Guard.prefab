@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4429647094997668050}
   - component: {fileID: -4464959530263832293}
-  - component: {fileID: 2124074624051785562}
   - component: {fileID: -1564722529981846039}
   - component: {fileID: 4023903141506429614}
   m_Layer: 0
@@ -58,19 +57,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!114 &2124074624051785562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448678556563260569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0797e083116195408c02b1550923e4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Goal: {fileID: 0}
 --- !u!114 &-1564722529981846039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +82,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571973504844fc047a93a6de661302dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &4884593718962560650
 PrefabInstance:
   m_ObjectHideFlags: 0
