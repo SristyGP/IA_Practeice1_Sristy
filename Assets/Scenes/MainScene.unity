@@ -19117,6 +19117,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602659673}
+  - component: {fileID: 602659675}
+  - component: {fileID: 602659674}
   m_Layer: 0
   m_Name: Maintenance_003
   m_TagString: Untagged
@@ -19153,6 +19155,40 @@ Transform:
   - {fileID: 78010675}
   m_Father: {fileID: 1684659327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &602659674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602659672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 17, y: 6, z: 4}
+  m_Center: {x: 29.5, y: 7.5, z: 46}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
+--- !u!114 &602659675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602659672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 4, y: 6, z: 44}
+  m_Center: {x: 23, y: 6.5, z: 26}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
 --- !u!1001 &606450902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32427,6 +32463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983213612}
+  - component: {fileID: 983213613}
   m_Layer: 0
   m_Name: Maintenance_001
   m_TagString: Untagged
@@ -32452,6 +32489,23 @@ Transform:
   - {fileID: 909594837}
   m_Father: {fileID: 1684659327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983213613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983213611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 14, y: 6, z: 8}
+  m_Center: {x: 39, y: 6.5, z: -2}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
 --- !u!1001 &983311733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44532,6 +44586,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1291461382}
+  - component: {fileID: 1291461384}
+  - component: {fileID: 1291461383}
   m_Layer: 0
   m_Name: Maintenance_002
   m_TagString: Untagged
@@ -44563,6 +44619,40 @@ Transform:
   - {fileID: 600413144}
   m_Father: {fileID: 1684659327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1291461383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291461381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 4, y: 10, z: 13}
+  m_Center: {x: 54, y: 4.5, z: 15.5}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
+--- !u!114 &1291461384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291461381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 23, y: 6, z: 3}
+  m_Center: {x: 45, y: 7, z: 22}
+  m_Area: 3
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1294664350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49599,10 +49689,6 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 836544194}
-    - target: {fileID: 0}
-      propertyPath: Goal
-      value: 
-      objectReference: {fileID: 404802726}
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_LocalPosition.x
