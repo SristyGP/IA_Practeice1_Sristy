@@ -21,6 +21,8 @@ public class AnimationLink : MonoBehaviour
 
     private void Update()
     {
+        m_AnimationSpeedParameterName = m_AnimatorComponent.name;
+
         NavMeshHit hit;
         if (!agent.pathPosition(NavMesh.AllAreas, 1.0F, out hit) && gameObject.name == "Thief")
             if ((hit.mask & MaintanceMask) != 0)
@@ -53,6 +55,6 @@ public class AnimationLink : MonoBehaviour
              m_NavAgentComponent.speed = originalSpeed;  
          }
      }*/
-    //NavMeshposition y hit
+    //NavMeshposition y hit Nav Mesh GetAreaFromName
 
 }
