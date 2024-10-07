@@ -8,6 +8,7 @@ TagManager:
   - Thief
   - Worker
   - Guard
+  - Maintenance
   layers:
   - Default
   - TransparentFX

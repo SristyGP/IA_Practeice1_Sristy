@@ -29,16 +29,17 @@ public class AnimationLink : MonoBehaviour
     {
         if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
         {
-            m_NavAgentComponent.speed = originalSpeed * 0.5f;  // Reducir la velocidad en un 50%
+            print("reudcir la velocidad");
+            m_NavAgentComponent.speed = originalSpeed * 0.5f;  
         }
     }
 
-    // Detectar cuando el agente sale de la zona "Maintenance"
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
         {
-            m_NavAgentComponent.speed = originalSpeed;  // Restaurar la velocidad original
+            m_NavAgentComponent.speed = originalSpeed;  
         }
     }
 
