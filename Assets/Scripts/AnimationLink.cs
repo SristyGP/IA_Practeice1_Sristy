@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class AnimationLink : MonoBehaviour
 {
@@ -17,30 +18,41 @@ public class AnimationLink : MonoBehaviour
         originalSpeed = m_NavAgentComponent.speed;
 
     }
-    
 
-    // Update is called once per frame
     private void Update()
     {
-        m_AnimatorComponent.SetFloat(m_AnimationSpeedParameterName, m_NavAgentComponent.speed);
+        NavMeshHit hit;
+        if (!agent.pathPosition(NavMesh.AllAreas, 1.0F, out hit) && gameObject.name == "Thief")
+            if ((hit.mask & MaintanceMask) != 0)
+            {
+                m_NavAgentComponent.speed = originalSpeed * 0.5f;
+            }
+        
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
-        {
-            print("reudcir la velocidad");
-            m_NavAgentComponent.speed = originalSpeed * 0.5f;  
-        }
-    }
 
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
-        {
-            m_NavAgentComponent.speed = originalSpeed;  
-        }
-    }
+    /* private void Update()
+     {
+         m_AnimatorComponent.SetFloat(m_AnimationSpeedParameterName, m_NavAgentComponent.speed);
+     }
+
+     private void OnTriggerEnter(Collider other)
+     {
+         if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
+         {
+             print("reudcir la velocidad");
+             m_NavAgentComponent.speed = originalSpeed * 0.5f;  
+         }
+     }
+
+
+     private void OnTriggerExit(Collider other)
+     {
+         if (other.CompareTag("Maintenance") && gameObject.name == "Thief")
+         {
+             m_NavAgentComponent.speed = originalSpeed;  
+         }
+     }*/
+    //NavMeshposition y hit
 
 }
