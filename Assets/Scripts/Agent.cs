@@ -25,6 +25,8 @@ public class Agent : MonoBehaviour
         {
             GoToNextWaypoint(); // Cambiar al siguiente punto
         }
+  
+
     }
 
     void UpdateDestination()
