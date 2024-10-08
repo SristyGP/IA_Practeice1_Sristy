@@ -23,7 +23,7 @@ public class Agent : MonoBehaviour
     {
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-            GoToNextWaypoint(); // Cambiar al siguiente punto
+            GoToNextWaypoint(); 
         }
   
 
@@ -31,13 +31,13 @@ public class Agent : MonoBehaviour
 
     void UpdateDestination()
     {
-        target = waypoints[waypointIndex].position; // Asigna el siguiente punto como destino
-        agent.SetDestination(target); // Le dices al agente que vaya hacia ese destino
+        target = waypoints[waypointIndex].position; 
+        agent.SetDestination(target); 
     }
 
     void GoToNextWaypoint()
     {
-        waypointIndex = (waypointIndex + 1) % waypoints.Length; // Moverse al siguiente punto en la lista, en bucle
-        UpdateDestination(); // Actualizar el destino
+        waypointIndex = (waypointIndex + 1) % waypoints.Length; 
+        UpdateDestination(); 
     }
 }
