@@ -5,7 +5,7 @@ public class Agent : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     public Transform[] waypoints;
     int waypointIndex;
-    public Vector3 target;
+    public Transform target;
     
 
    
@@ -31,8 +31,8 @@ public class Agent : MonoBehaviour
 
     void UpdateDestination()
     {
-        target = waypoints[waypointIndex].position; 
-        agent.SetDestination(target); 
+        target = waypoints[waypointIndex]; 
+        agent.SetDestination(target.position); 
     }
 
     void GoToNextWaypoint()

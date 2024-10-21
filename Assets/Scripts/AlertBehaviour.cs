@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class AlertBehaviour : StateMachineBehaviour
 {
     public float FollowDistance = 2f;
-    public Vector3 Target; // Cambiar a Vector3
+    public Transform Target; // Cambiar a Vector3
     public NavMeshAgent m_AgentComponent;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,8 +16,8 @@ public class AlertBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        m_AgentComponent.destination = Target; // Asigna directamente la posición (Vector3)
-        if (Vector3.Distance(animator.transform.position, Target) > FollowDistance)
+        m_AgentComponent.destination = Target.position; // Asigna directamente la posición (Vector3)
+        if (Vector3.Distance(animator.transform.position, Target.position) > FollowDistance)
         {
             animator.SetBool("Alert", false);
         }

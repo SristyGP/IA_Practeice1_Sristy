@@ -22,13 +22,11 @@ public class AnimationLink : MonoBehaviour
     private void Update()
     {
         m_AnimationSpeedParameterName = m_AnimatorComponent.name;
+        m_AnimatorComponent.SetFloat(m_AnimationSpeedParameterName, m_NavAgentComponent.speed);
     }
 
 
-    /* private void Update()
-     {
-         m_AnimatorComponent.SetFloat(m_AnimationSpeedParameterName, m_NavAgentComponent.speed);
-     }
+    
 
      private void OnTriggerEnter(Collider other)
      {
@@ -46,7 +44,7 @@ public class AnimationLink : MonoBehaviour
          {
              m_NavAgentComponent.speed = originalSpeed;  
          }
-     }*/
-    //NavMeshposition y hit Nav Mesh GetAreaFromName
+     }
+    
 
 }
