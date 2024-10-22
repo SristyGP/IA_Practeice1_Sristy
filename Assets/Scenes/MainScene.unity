@@ -12489,13 +12489,13 @@ PrefabInstance:
     - target: {fileID: 448678556563260569, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1342923377712472859, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 67c470303e695d542b5a9a7361980155, type: 2}
+      objectReference: {fileID: 9100000, guid: aa7b60bf2b306b24fb912cea2ef0939c, type: 2}
     - target: {fileID: 2245669004186112466, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: Agent
@@ -12596,6 +12596,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1537299470}
+    - targetCorrespondingSourceObject: {fileID: 448678556563260569, guid: f26ab5f363d1fe845ba646c708192930,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1537299472}
   m_SourcePrefab: {fileID: 100100000, guid: f26ab5f363d1fe845ba646c708192930, type: 3}
 --- !u!4 &404802726 stripped
 Transform:
@@ -50154,7 +50158,7 @@ PrefabInstance:
     - target: {fileID: 448678556563260569, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
@@ -50176,6 +50180,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 404802726}
+    - target: {fileID: 4023903141506429614, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
+        type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4023903141506429614, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: 'waypoints.Array.data[0]'
@@ -50241,6 +50250,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6904581601817609831, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 742ec6047d3766147afed252691bdc43, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -54521,6 +54535,28 @@ MonoBehaviour:
   - {fileID: 2063744840}
   - {fileID: 1150646090}
   target: {fileID: 404802726}
+--- !u!95 &1537299472
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537299466}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a6c653f91ac922449cc73de6cae9d99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1538854389
 PrefabInstance:
   m_ObjectHideFlags: 0
