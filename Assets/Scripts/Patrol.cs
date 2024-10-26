@@ -8,6 +8,7 @@ public class Patrol :StateMachineBehaviour
     public Transform[] waypoints;
     int waypointIndex;
     public Transform target;
+    private Vector3 Raycast; 
 
 
 
@@ -25,8 +26,25 @@ public class Patrol :StateMachineBehaviour
     // Update is called once per frame
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.DrawRay(Raycast, animator.transform.forward * 5, UnityEngine.Color.red); //  Raycast visible (flecha roja)
+        Raycast = animator.transform.position + new Vector3(0, 1f, 0);// posicionamiento de raycast sobre el suelo
+
+        RaycastHit hit;
+        if (Physics.Raycast(Raycast, animator.transform.forward, out hit, 5f)) // detecata al ladron
+        {
+            Debug.Log("detección");
+            if (hit.transform.CompareTag("Thief"))
+            {
+                animator.SetBool("huida", true);
+                Debug.Log("huye por tu vida");
+            }
+
+        }
+
+
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
+               
             GoToNextWaypoint(); 
         }
   
@@ -41,7 +59,9 @@ public class Patrol :StateMachineBehaviour
 
     void GoToNextWaypoint()
     {
+        Debug.Log("patrullando");
         waypointIndex = (waypointIndex + 1) % waypoints.Length; 
+      
         UpdateDestination(); 
     }
 }
