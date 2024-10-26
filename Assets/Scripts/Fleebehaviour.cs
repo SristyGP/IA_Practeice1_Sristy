@@ -15,12 +15,12 @@ public class Fleebehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        var Agent = animator.GetComponent<Agent>(); // Referencia a tu script `Agent` 
+        var Agent = animator.GetComponent<Agent>(); 
 
         waypoints = Agent.waypoints;
         thief = GameObject.FindWithTag("Thief").transform;
 
-        // Guardar el último waypoint alcanzado y dirigirse a él
+        
         lastWaypointIndex = Agent.currentWaypointIndex;
         agent.SetDestination(waypoints[lastWaypointIndex].position);
     }
@@ -33,7 +33,7 @@ public class Fleebehaviour : StateMachineBehaviour
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             Debug.Log("Huida completada, volviendo a patrullaje");
-            animator.ResetTrigger("ToFlee");
+            animator.ResetTrigger("ToFlee"); // Trigger o SetBool("nombre ej asustado", true)
             animator.SetTrigger("ToPatrol");
             return;
         }
