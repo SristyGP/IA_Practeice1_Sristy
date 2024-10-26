@@ -1,6 +1,6 @@
-using UnityEngine.AI;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.AI;
+
 
 public class Patrol :StateMachineBehaviour
 {
@@ -8,60 +8,49 @@ public class Patrol :StateMachineBehaviour
     public Transform[] waypoints;
     int waypointIndex;
     public Transform target;
-    private Vector3 Raycast; 
+    private Vector3 rayOrigin; 
 
-
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        Debug.Log("comienza el estado de flee");
         agent = animator.GetComponent<NavMeshAgent>();
-        waypoints= animator.GetComponent<Agent>().waypoints;
+        waypoints = animator.GetComponent<Agent>().waypoints; 
         UpdateDestination();
-
     }
 
-    // Update is called once per frame
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.DrawRay(Raycast, animator.transform.forward * 5, UnityEngine.Color.red); //  Raycast visible (flecha roja)
-        Raycast = animator.transform.position + new Vector3(0, 1f, 0);// posicionamiento de raycast sobre el suelo
+        
+        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 5, Color.red); // Raycast visible (flecha roja)
+        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0); // Posicionamiento de raycast - 1 metro es deamsiado alto
 
         RaycastHit hit;
-        if (Physics.Raycast(Raycast, animator.transform.forward, out hit, 5f)) // detecata al ladron
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
             Debug.Log("detección");
-            if (hit.transform.CompareTag("Thief"))
+            if (hit.collider.gameObject.name == "Thief") 
             {
-                animator.SetBool("huida", true);
-                Debug.Log("huye por tu vida");
+                Debug.Log("Thief detectado, activando huida");
+                animator.SetBool("huida",true); 
             }
-
         }
-
 
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-               
-            GoToNextWaypoint(); 
+            GoToNextWaypoint();
         }
-  
-
     }
 
     void UpdateDestination()
     {
-        target = waypoints[waypointIndex]; 
-        agent.SetDestination(target.position); 
+        target = waypoints[waypointIndex];
+        agent.SetDestination(target.position);
     }
 
     void GoToNextWaypoint()
     {
-        Debug.Log("patrullando");
-        waypointIndex = (waypointIndex + 1) % waypoints.Length; 
-      
-        UpdateDestination(); 
-    }
+        
+        waypointIndex = (waypointIndex + 1) % waypoints.Length;
+        UpdateDestination();
+    } 
 }

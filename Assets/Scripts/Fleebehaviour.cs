@@ -14,7 +14,7 @@ public class Fleebehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        var Agent = animator.GetComponent<Agent>(); // Reemplaza por Agent si el nombre de tu script es así
+        var Agent = animator.GetComponent<Agent>(); // Referencia a tu script `Agent` 
 
         waypoints = Agent.waypoints;
         thief = GameObject.FindWithTag("Thief").transform;
@@ -26,16 +26,14 @@ public class Fleebehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Verifica si el NPC ha llegado al último waypoint para volver a patrullaje
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             Debug.Log("Huida completada, volviendo a patrullaje");
-            animator.ResetTrigger("Flee");
-            animator.SetTrigger("Patrol");
+            animator.ResetTrigger("ToFlee");
+            animator.SetTrigger("ToPatrol");
             return;
         }
 
-        // Revisa la distancia al Thief, y si está dentro del rango, sigue en estado de huida
         if (Vector3.Distance(agent.transform.position, thief.position) <= detectionRange)
         {
             Debug.Log("Thief detectado dentro del rango de huida");
