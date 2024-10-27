@@ -5,27 +5,46 @@ public class HideBehaviour : StateMachineBehaviour
 {
     private float hideDuration = 5f; // Tiempo en segundos que permanecerá en Hide
     private float hideTimer;
+    private NavMeshAgent agent;
+    private Vector3 maintenancePoint; // Punto objetivo en Maintenance
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         hideTimer = 0f; // Reiniciar el temporizador al entrar en Hide
-        animator.GetComponent<NavMeshAgent>().isStopped = true; // Detener al NPC
+        agent = animator.GetComponent<NavMeshAgent>();
+
+        // Obtener el ducto más cercano en Maintenance
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(animator.transform.position, out hit, 20f, 1 << NavMesh.GetAreaFromName("Maintenance")))
+        {
+            maintenancePoint = hit.position;
+            agent.SetDestination(maintenancePoint);
+            agent.isStopped = false;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró un punto en la zona de Maintenance cercano.");
+        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        hideTimer += Time.deltaTime; // Incrementar el temporizador
-
-        if (hideTimer >= hideDuration)
+        // Verifica si ha llegado al ducto en Maintenance
+        if (Vector3.Distance(animator.transform.position, maintenancePoint) <= agent.stoppingDistance && agent.remainingDistance <= agent.stoppingDistance)
         {
-            animator.SetTrigger("ToSearch"); // Cambiar al estado Search después de esconderse
-            animator.ResetTrigger("ThiefToFlee");
-            animator.ResetTrigger("ToHide");
+            hideTimer += Time.deltaTime; // Inicia el temporizador una vez que llega
+
+            if (hideTimer >= hideDuration)
+            {
+                animator.SetTrigger("ToSearch"); // Cambiar al estado Search después de esconderse
+                animator.ResetTrigger("ThiefToFlee");
+                animator.ResetTrigger("ToHide");
+            }
         }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<NavMeshAgent>().isStopped = false; // Reactivar el movimiento del NPC al salir de Hide
+        agent.isStopped = false; // Reactivar el movimiento del NPC al salir de Hide
     }
 }
