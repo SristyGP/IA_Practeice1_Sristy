@@ -15,10 +15,10 @@ public class HideBehaviour : StateMachineBehaviour
 
         // Obtener el ducto más cercano en Maintenance
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(animator.transform.position, out hit, 20f, 1 << NavMesh.GetAreaFromName("Maintenance")))
+        if (NavMesh.SamplePosition(animator.transform.position, out hit, 20f, 1 << NavMesh.GetAreaFromName("Maintenance"))) // Alcance incrementado
         {
             maintenancePoint = hit.position;
-            agent.SetDestination(maintenancePoint);
+            agent.SetDestination(maintenancePoint); // Se dirige directamente al ducto
             agent.isStopped = false;
         }
         else
@@ -29,10 +29,23 @@ public class HideBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Verifica si ha llegado al ducto en Maintenance
-        if (Vector3.Distance(animator.transform.position, maintenancePoint) <= agent.stoppingDistance && agent.remainingDistance <= agent.stoppingDistance)
+        // Obtener el ducto más cercano en Maintenance
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(animator.transform.position, out hit, 20f, 1 << NavMesh.GetAreaFromName("Maintenance"))) // Alcance incrementado
         {
-            hideTimer += Time.deltaTime; // Inicia el temporizador una vez que llega
+            maintenancePoint = hit.position;
+            agent.SetDestination(maintenancePoint); // Se dirige directamente al ducto
+            agent.isStopped = false;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró un punto en la zona de Maintenance cercano.");
+        }
+        // Verifica si ha llegado al ducto en Maintenance
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            agent.isStopped = true; // Detiene el movimiento al llegar al ducto
+            hideTimer += Time.deltaTime; // Inicia el temporizador
 
             if (hideTimer >= hideDuration)
             {

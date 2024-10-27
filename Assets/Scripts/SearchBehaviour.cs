@@ -25,21 +25,14 @@ public class SearchBehaviour : StateMachineBehaviour
         if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
             Debug.Log("detecta raycast");
-            // Verifica si el objeto detectado es un "Worker"
+
             if (hit.collider.gameObject.name == "Worker")
             {
                 Debug.Log("detecta Worker");
-                animator.SetTrigger("ThiefToFlee");
-                animator.ResetTrigger("ToHide");
-                animator.ResetTrigger("ToSearch");
-            }
-            // Verifica si el objeto detectado es un "Guard"
-            else if (hit.collider.gameObject.name == "Guard")
-            {
-                Debug.Log("detecta Guardr");
-                animator.SetTrigger("ToHide");
+                animator.SetTrigger("ToHide"); // Cambiar al estado Hide
                 animator.ResetTrigger("ThiefToFlee");
                 animator.ResetTrigger("ToSearch");
+                agent.isStopped = true; // Detener el movimiento hacia el waypoint
             }
         }
 
