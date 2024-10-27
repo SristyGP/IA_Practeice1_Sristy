@@ -5,7 +5,7 @@ public class AffraidBehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private Transform guard;
-    private float detectionRange = 5f;
+    private float detectionRange = 10f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

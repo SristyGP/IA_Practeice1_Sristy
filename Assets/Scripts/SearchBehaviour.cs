@@ -19,20 +19,29 @@ public class SearchBehaviour : StateMachineBehaviour
     {
         // Ajuste de la posición de inicio del Raycast y su dirección
         rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0);
-        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 5, Color.red);
+        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 10, Color.red);
 
         RaycastHit hit;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
         {
             Debug.Log("detecta raycast");
 
-            if (hit.collider.gameObject.name == "Worker")
+            if (hit.collider.gameObject.CompareTag("Worker"))
             {
                 Debug.Log("detecta Worker");
                 animator.SetTrigger("ToHide"); // Cambiar al estado Hide
                 animator.ResetTrigger("ThiefToFlee");
                 animator.ResetTrigger("ToSearch");
                 agent.isStopped = true; // Detener el movimiento hacia el waypoint
+            }
+            else if (hit.collider.gameObject.CompareTag("Guard"))
+            {
+                Debug.Log("detecta Guard");
+                animator.ResetTrigger("ToHide"); // Cambiar al estado Hide
+                animator.SetTrigger("ThiefToFlee");
+                animator.ResetTrigger("ToSearch");
+                agent.isStopped = true; // Detener el movimiento hacia el waypoint
+
             }
         }
 

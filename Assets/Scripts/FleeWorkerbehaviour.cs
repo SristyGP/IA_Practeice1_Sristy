@@ -11,7 +11,7 @@ public class FleeWorkerbehaviour : StateMachineBehaviour
     private Transform guard;
     private Transform thief;
     private int lastWaypointIndex;
-    private float detectionRange = 5f;
+    private float detectionRange = 10f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
