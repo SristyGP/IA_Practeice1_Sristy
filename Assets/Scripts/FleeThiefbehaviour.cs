@@ -12,38 +12,28 @@ public class FleeThiefbehaviour : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         guard = GameObject.FindWithTag("Guard").transform;
-        Debug.Log(guard);
-
-        // Calcula y establece la dirección inicial de huida
-        SetFleeDirection();
+        SetFleeTarget(); // Establece el destino de huida inicial
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Si el Guard está a menos de 5 metros, recalcula la dirección de huida
-        if (Vector3.Distance(agent.transform.position, guard.position) <= detectionRange)
-        {
-            Debug.Log("Guardia detectado, cambiando de dirección");
-            SetFleeDirection();
-        }
+        float distanceToGuard = Vector3.Distance(agent.transform.position, guard.position);
 
-        // Si se aleja más de la distancia de detección, cambia al estado Search
-        if (Vector3.Distance(agent.transform.position, guard.position) > detectionRange)
+        if (distanceToGuard <= detectionRange)
         {
-            animator.SetTrigger("ToSearch"); // Cambia de estado al alejarse
-            animator.ResetTrigger("ThiefToFlee");
-            animator.ResetTrigger("ToHide");
+            SetFleeTarget(); // Cambia de dirección solo si el guardia está cerca
+        }
+        else if (distanceToGuard > detectionRange + 1f) // Agrega margen para evitar fluctuación entre estados
+        {
+            animator.SetTrigger("ToSearch"); // Cambia a estado de búsqueda
         }
     }
 
-    private void SetFleeDirection()
+    private void SetFleeTarget()
     {
-        Debug.Log("cambio de dirración");
-
-        // Calcula la dirección y el destino de huida, y establece el destino en el NavMeshAgent
+        // Calcula la dirección de huida y establece el destino
         Vector3 fleeDirection = (agent.transform.position - guard.position).normalized;
-        Vector3 fleeTarget = agent.transform.position + fleeDirection * fleeDistance;
-        agent.SetDestination(fleeTarget);
+        agent.SetDestination(agent.transform.position + fleeDirection * fleeDistance);
     }
 
     //// Detecta colisiones para arrastrar el obstáculo
