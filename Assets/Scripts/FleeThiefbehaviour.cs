@@ -38,6 +38,8 @@ public class FleeThiefbehaviour : StateMachineBehaviour
 
     private void SetFleeDirection()
     {
+        Debug.Log("cambio de dirración");
+
         // Calcula la dirección y el destino de huida, y establece el destino en el NavMeshAgent
         Vector3 fleeDirection = (agent.transform.position - guard.position).normalized;
         Vector3 fleeTarget = agent.transform.position + fleeDirection * fleeDistance;
