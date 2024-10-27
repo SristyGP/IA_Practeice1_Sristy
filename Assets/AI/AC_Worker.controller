@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: relajado
+    m_ConditionEvent: ToPosing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2784907248536392857}
@@ -116,7 +116,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: asustado
+    m_ConditionEvent: ToAffraid
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7453678411615899405}
@@ -141,19 +141,19 @@ AnimatorController:
   m_Name: AC_Worker
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: huida
+  - m_Name: ToFlee
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: asustado
+  - m_Name: ToAffraid
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: relajado
+  - m_Name: ToPosing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -181,7 +181,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: huida
+    m_ConditionEvent: ToFlee
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7474291404290841262}

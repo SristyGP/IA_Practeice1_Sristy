@@ -7,6 +7,7 @@ public class Fleebehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private Transform[] waypoints;
+    private Transform guard;
     private Transform thief;
     private int lastWaypointIndex;
     private float detectionRange = 5f;
@@ -15,32 +16,35 @@ public class Fleebehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        var Agent = animator.GetComponent<Agent>(); 
+        var Agent = animator.GetComponent<Agent>();
 
         waypoints = Agent.waypoints;
+        guard = GameObject.FindWithTag("Guard").transform;
         thief = GameObject.FindWithTag("Thief").transform;
 
-        
         lastWaypointIndex = Agent.currentWaypointIndex;
         agent.SetDestination(waypoints[lastWaypointIndex].position);
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 5, Color.red); // Raycast visible (flecha roja)
-        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0); // Posicionamiento de raycast - 1 metro es deamsiado alto
+        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 5, Color.red);
+        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0);
 
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
-            Debug.Log("Huida completada, volviendo a patrullaje");
-            animator.ResetTrigger("ToFlee"); // Trigger o SetBool("nombre ej asustado", true)
-            animator.SetTrigger("ToPatrol");
-            return;
+            if (hit.collider.gameObject.name == "Guard")
+            {
+                // Cambia exclusivamente al estado Affraid
+                animator.ResetTrigger("ToPosing");
+                animator.ResetTrigger("ToFlee");
+                animator.SetTrigger("ToAffraid");
+            }
         }
 
-        if (Vector3.Distance(agent.transform.position, thief.position) <= detectionRange)
+        if (Vector3.Distance(agent.transform.position, guard.position) <= detectionRange)
         {
-            Debug.Log("Thief detectado dentro del rango de huida");
             agent.SetDestination(waypoints[lastWaypointIndex].position);
         }
     }

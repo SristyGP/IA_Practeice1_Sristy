@@ -12,7 +12,7 @@ public class Patrol :StateMachineBehaviour
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("comienza el estado de flee");
+        //Debug.Log("comienza el estado de flee");
         agent = animator.GetComponent<NavMeshAgent>();
         waypoints = animator.GetComponent<Agent>().waypoints; 
         UpdateDestination();
@@ -27,11 +27,11 @@ public class Patrol :StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
-            Debug.Log("detección");
+           //Debug.Log("detección");
             if (hit.collider.gameObject.name == "Thief") 
             {
-                Debug.Log("Thief detectado, activando huida");
-                animator.SetBool("huida",true); 
+                //Debug.Log("Thief detectado, activando huida");
+                animator.SetTrigger("ToFlee"); 
             }
         }
 
