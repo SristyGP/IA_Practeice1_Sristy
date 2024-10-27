@@ -3,7 +3,7 @@ using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
-public class Fleebehaviour : StateMachineBehaviour
+public class FleeWorkerbehaviour : StateMachineBehaviour
 {
    
     private NavMeshAgent agent;
