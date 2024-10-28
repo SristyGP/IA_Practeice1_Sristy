@@ -22,9 +22,9 @@ public class AffraidBehaviour : StateMachineBehaviour
         if (Vector3.Distance(agent.transform.position, guard.position) <= detectionRange)
         {
             agent.isStopped = false;
-            animator.SetBool("Posing", true);
-            animator.SetBool("Affraid", false);
-            animator.SetBool("Flee", false);
+            animator.SetBool("ToPosing", true);
+            animator.SetBool("ToAffraid", false);
+            animator.SetBool("ToFlee", false);
         }
     }
 }
