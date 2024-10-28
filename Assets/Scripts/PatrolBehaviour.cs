@@ -25,11 +25,11 @@ public class PatrolBehaviour : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
         {
-            Debug.Log("detecta raycast");
+            //Debug.Log("detecta raycast");
 
             if (hit.collider.gameObject.CompareTag("Thief"))
             {
-                Debug.Log("detecta Thief");
+                //Debug.Log("detecta Thief");
                 animator.SetBool("ToPursue", true); // Cambiar al estado Persue
                  // Detener el movimiento hacia el waypoint
             }

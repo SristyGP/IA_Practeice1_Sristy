@@ -49,23 +49,7 @@ public class SearchBehaviour : StateMachineBehaviour
            
         }
 
-        RaycastHit hitclose;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 1f))
-        {
-            Debug.Log("detecta el estado KO");
-
-           
-            if (hit.collider.gameObject.CompareTag("Guard"))
-            {
-                Debug.Log("detecta Guard");
-                animator.SetBool("ToHide", false); // Cambiar al estado Hide
-                animator.SetBool("KO", true);
-                animator.SetBool("ToSearch", false);
-                animator.SetBool("ToSearch", false);
-                agent.ResetPath(); // Detener el movimiento hacia el waypoint
-
-            }
-        }
+        
 
         // Si ha alcanzado el destino, se mueve al siguiente waypoint
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
