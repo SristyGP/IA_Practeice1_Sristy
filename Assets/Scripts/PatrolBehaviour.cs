@@ -50,14 +50,14 @@ public class PatrolBehaviour : StateMachineBehaviour
         }
 
         RaycastHit hitclose;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 1f))
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 2f))
         {
             Debug.Log("detecta el estado KO");
 
 
             if (hitclose.collider.gameObject.CompareTag("Thief"))
             {
-                Debug.Log("detecta Guard");
+                Debug.Log("cambia a estado ko");
                 animator.SetBool("ToHide", false); // Cambiar al estado Hide
                 animator.SetBool("KO", true);
                 animator.SetBool("ToSearch", false);

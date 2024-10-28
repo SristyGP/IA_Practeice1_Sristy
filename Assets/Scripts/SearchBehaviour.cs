@@ -39,7 +39,7 @@ public class SearchBehaviour : StateMachineBehaviour
             else if (hit.collider.gameObject.CompareTag("Guard"))
             {
                 //Debug.Log("detecta Guard");
-                animator.SetBool("ToHide", false); // Cambiar al estado Hide
+                animator.SetBool("ToHide", false); 
                 animator.SetBool("ThiefToFlee", true);
                 animator.SetBool("ToSearch", false);
                 animator.SetBool("KO", false);
