@@ -49,9 +49,9 @@ public class HideBehaviour : StateMachineBehaviour
 
             if (hideTimer >= hideDuration)
             {
-                animator.SetTrigger("ToSearch"); // Cambiar al estado Search después de esconderse
-                animator.ResetTrigger("ThiefToFlee");
-                animator.ResetTrigger("ToHide");
+                animator.SetBool("ToHide", false); // Cambiar al estado Hide
+                animator.SetBool("ThiefToFlee", false);
+                animator.SetBool("ToSearch", true);
             }
         }
     }

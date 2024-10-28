@@ -17,6 +17,7 @@ public class FleeThiefbehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
         float distanceToGuard = Vector3.Distance(agent.transform.position, guard.position);
 
         if (distanceToGuard <= detectionRange)
@@ -25,7 +26,9 @@ public class FleeThiefbehaviour : StateMachineBehaviour
         }
         else if (distanceToGuard > detectionRange + 1f) // Agrega margen para evitar fluctuación entre estados
         {
-            animator.SetTrigger("ToSearch"); // Cambia a estado de búsqueda
+            animator.SetBool("ToHide", false); // Cambiar al estado Hide
+            animator.SetBool("ThiefToFlee", false);
+            animator.SetBool("ToSearch", true);
         }
     }
 

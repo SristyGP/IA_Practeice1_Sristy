@@ -11,6 +11,7 @@ public class SearchBehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
         waypoints = animator.GetComponent<Agent>().waypoints;
         UpdateDestination();
     }
@@ -29,18 +30,18 @@ public class SearchBehaviour : StateMachineBehaviour
             if (hit.collider.gameObject.CompareTag("Worker"))
             {
                 Debug.Log("detecta Worker");
-                animator.SetTrigger("ToHide"); // Cambiar al estado Hide
-                animator.ResetTrigger("ThiefToFlee");
-                animator.ResetTrigger("ToSearch");
-                agent.isStopped = true; // Detener el movimiento hacia el waypoint
+                animator.SetBool("ToHide", true); // Cambiar al estado Hide
+                animator.SetBool("ThiefToFlee", false);
+                animator.SetBool("ToSearch", false);
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
             }
             else if (hit.collider.gameObject.CompareTag("Guard"))
             {
                 Debug.Log("detecta Guard");
-                animator.ResetTrigger("ToHide"); // Cambiar al estado Hide
-                animator.SetTrigger("ThiefToFlee");
-                animator.ResetTrigger("ToSearch");
-                agent.isStopped = true; // Detener el movimiento hacia el waypoint
+                animator.SetBool("ToHide", false); // Cambiar al estado Hide
+                animator.SetBool("ThiefToFlee", true);
+                animator.SetBool("ToSearch", false);
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
 
             }
         }
