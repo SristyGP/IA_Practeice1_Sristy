@@ -31,7 +31,7 @@ public class PosingBehaviour : StateMachineBehaviour
             if (hit.collider.gameObject.name == "Thief") 
             {
                 //Debug.Log("Thief detectado, activando huida");
-                animator.SetTrigger("ToFlee"); 
+                animator.SetBool("Flee", false); 
             }
         }
 
