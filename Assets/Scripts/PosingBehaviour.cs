@@ -22,16 +22,19 @@ public class PosingBehaviour : StateMachineBehaviour
     {
         
         Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 10, Color.red); // Raycast visible (flecha roja)
-        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0); // Posicionamiento de raycast - 1 metro es deamsiado alto
+        rayOrigin = animator.transform.position + new Vector3(0, 0.5f, 0); // Posicionamiento de raycast - 1 metro es deamsiado alto
 
         RaycastHit hit;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
            //Debug.Log("detección");
-            if (hit.collider.gameObject.name == "Thief") 
+            if (hit.collider.gameObject.CompareTag ("Thief")) 
             {
-                //Debug.Log("Thief detectado, activando huida");
-                animator.SetBool("Flee", false); 
+                Debug.Log("Thief detectado, activando huida");
+                animator.SetBool("ToPosing", false);
+                animator.SetBool("ToAffraid", false);
+                animator.SetBool("ToFlee", true);
+                
             }
         }
 

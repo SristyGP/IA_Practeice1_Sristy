@@ -32,9 +32,9 @@ public class FleeWorkerbehaviour : StateMachineBehaviour
         // Cuando llega al punto seguro, pasa a Affraid
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            animator.SetBool("Flee",false);
-            animator.SetBool("Posing", false);
-            animator.SetBool("Affraid", true);
+            animator.SetBool("ToFlee",false);
+            animator.SetBool("ToPosing", false);
+            animator.SetBool("ToAffraid", true);
         }
     }
 }
