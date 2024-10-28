@@ -19,6 +19,34 @@ public class AttackBehaviour : StateMachineBehaviour
         rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0);
         Debug.DrawRay(rayOrigin, animator.transform.forward * 10, Color.red);
 
+        RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
+        {
+
+
+            if (hit.collider.gameObject.CompareTag("Thief"))
+            {
+
+
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            }
+            else
+            {
+                Debug.Log("cambia a estado Seek 1");
+                animator.SetBool("ToPursue", false); // Cambiar al estado Attack
+                animator.SetBool("ToPatrol", false);
+                animator.SetBool("ToSeek", true);
+            }
+        }
+        else
+        {
+            Debug.Log("cambia a estado Seek 2");
+            animator.SetBool("ToPursue", false); // Cambiar al estado Attack
+            animator.SetBool("ToPatrol", false);
+            animator.SetBool("ToSeek", true);
+        }
+
         RaycastHit hitclose;
         if (Physics.Raycast(rayOrigin, animator.transform.forward, out hitclose, 5f))
         {
@@ -29,27 +57,14 @@ public class AttackBehaviour : StateMachineBehaviour
                 if (Vector3.Distance(animator.transform.position, hitclose.transform.position) > 5f)
                 {
                     Debug.Log("Thief fuera de alcance de ataque, cambiando a Pursue");
-                    animator.SetBool("ToPursue", true); // Cambiar al estado Pursue
+                    animator.SetBool("ToPatrol", false);
                     animator.SetBool("ToAttack", false); // Desactiva el estado Attack
+                    animator.SetBool("ToPursue", true); // Cambiar al estado Pursue
+                    
                 }
 
 
-                RaycastHit hit;
-                if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
-                {
-
-
-                    if (hitclose.collider.gameObject.CompareTag("Thief"))
-                    {
-                        Debug.Log("cambia a estado Seek");
-                        animator.SetBool("ToPursue", false); // Cambiar al estado Attack
-                        animator.SetBool("ToSeek", true);
-                        animator.SetBool("ToPatrol", false);
-
-                        agent.ResetPath(); // Detener el movimiento hacia el waypoint
-
-                    }
-                }
+               
             }
         }
     }

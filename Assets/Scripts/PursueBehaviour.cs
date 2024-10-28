@@ -37,21 +37,22 @@ public class PursueBehaviour : StateMachineBehaviour
            // Debug.Log("no funciona");
         }
 
-        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0);
+        rayOrigin = animator.transform.position + new Vector3(0, 0.5f, 0);
         Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 10, Color.red);
 
         RaycastHit hitclose;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 3f))
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 1f))
         {
 
 
             if (hitclose.collider.gameObject.CompareTag("Thief"))
             {
                 Debug.Log("cambia a estado Attack");
-                animator.SetBool("ToAttack", true); // Cambiar al estado Attack
                 animator.SetBool("ToPursue", false);
                 animator.SetBool("ToSeek", false);
                 animator.SetBool("ToPatrol", false);
+                animator.SetBool("ToAttack", true); // Cambiar al estado Attack
+                
 
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
 
