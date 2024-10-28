@@ -29,17 +29,38 @@ public class SearchBehaviour : StateMachineBehaviour
 
             if (hit.collider.gameObject.CompareTag("Worker"))
             {
-                Debug.Log("detecta Worker");
+                //Debug.Log("detecta Worker");
                 animator.SetBool("ToHide", true); // Cambiar al estado Hide
                 animator.SetBool("ThiefToFlee", false);
                 animator.SetBool("ToSearch", false);
+                animator.SetBool("KO", false);
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
             }
             else if (hit.collider.gameObject.CompareTag("Guard"))
             {
-                Debug.Log("detecta Guard");
+                //Debug.Log("detecta Guard");
                 animator.SetBool("ToHide", false); // Cambiar al estado Hide
                 animator.SetBool("ThiefToFlee", true);
+                animator.SetBool("ToSearch", false);
+                animator.SetBool("KO", false);
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            }
+           
+        }
+
+        RaycastHit hitclose;
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 1f))
+        {
+            Debug.Log("detecta el estado KO");
+
+           
+            if (hit.collider.gameObject.CompareTag("Guard"))
+            {
+                Debug.Log("detecta Guard");
+                animator.SetBool("ToHide", false); // Cambiar al estado Hide
+                animator.SetBool("KO", true);
+                animator.SetBool("ToSearch", false);
                 animator.SetBool("ToSearch", false);
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
 

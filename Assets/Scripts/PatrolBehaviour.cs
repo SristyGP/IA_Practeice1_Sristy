@@ -5,35 +5,69 @@ public class PatrolBehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     public Transform[] waypoints;
-    int waypointIndex;
-    public Transform target;
+    private int waypointIndex;
     private Vector3 rayOrigin;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //Debug.Log("comienza el estado de Flee");
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
         waypoints = animator.GetComponent<Agent>().waypoints;
         UpdateDestination();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 5, Color.red); // Raycast visible (flecha roja)
-        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0); // Posicionamiento de raycast - 1 metro es deamsiado alto
+        // Ajuste de la posición de inicio del Raycast y su dirección
+        rayOrigin = animator.transform.position + new Vector3(0, 0.1f, 0);
+        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 10, Color.red);
 
         RaycastHit hit;
-        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 10f))
         {
-            //Debug.Log("detección");
-            if (hit.collider.gameObject.name == "Thief")
+            Debug.Log("detecta raycast");
+
+            //if (hit.collider.gameObject.CompareTag("Worker"))
+            //{
+            //    //Debug.Log("detecta Worker");
+            //    animator.SetBool("ToHide", true); // Cambiar al estado Hide
+            //    animator.SetBool("ThiefToFlee", false);
+            //    animator.SetBool("ToSearch", false);
+            //    animator.SetBool("KO", false);
+            //    agent.ResetPath(); // Detener el movimiento hacia el waypoint
+            //}
+            //else if (hit.collider.gameObject.CompareTag("Guard"))
+            //{
+            //    //Debug.Log("detecta Guard");
+            //    animator.SetBool("ToHide", false); // Cambiar al estado Hide
+            //    animator.SetBool("ThiefToFlee", true);
+            //    animator.SetBool("ToSearch", false);
+            //    animator.SetBool("KO", false);
+            //    agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            //}
+
+        }
+
+        RaycastHit hitclose;
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 1f))
+        {
+            Debug.Log("detecta el estado KO");
+
+
+            if (hitclose.collider.gameObject.CompareTag("Thief"))
             {
-                //Debug.Log("Guard detectado, activando huida");
-                animator.SetTrigger("ToPursue");
+                Debug.Log("detecta Guard");
+                animator.SetBool("ToHide", false); // Cambiar al estado Hide
+                animator.SetBool("KO", true);
+                animator.SetBool("ToSearch", false);
+                animator.SetBool("ToSearch", false);
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
             }
         }
 
+        // Si ha alcanzado el destino, se mueve al siguiente waypoint
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
             GoToNextWaypoint();
@@ -42,14 +76,14 @@ public class PatrolBehaviour : StateMachineBehaviour
 
     void UpdateDestination()
     {
-        target = waypoints[waypointIndex];
-        agent.SetDestination(target.position);
+        // Actualiza el destino al siguiente waypoint
+        agent.SetDestination(waypoints[waypointIndex].position);
     }
 
     void GoToNextWaypoint()
     {
-
         waypointIndex = (waypointIndex + 1) % waypoints.Length;
         UpdateDestination();
     }
 }
+
