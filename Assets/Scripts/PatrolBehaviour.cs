@@ -27,25 +27,17 @@ public class PatrolBehaviour : StateMachineBehaviour
         {
             Debug.Log("detecta raycast");
 
-            //if (hit.collider.gameObject.CompareTag("Worker"))
-            //{
-            //    //Debug.Log("detecta Worker");
-            //    animator.SetBool("ToHide", true); // Cambiar al estado Hide
-            //    animator.SetBool("ThiefToFlee", false);
-            //    animator.SetBool("ToSearch", false);
-            //    animator.SetBool("KO", false);
-            //    agent.ResetPath(); // Detener el movimiento hacia el waypoint
-            //}
-            //else if (hit.collider.gameObject.CompareTag("Guard"))
-            //{
-            //    //Debug.Log("detecta Guard");
-            //    animator.SetBool("ToHide", false); // Cambiar al estado Hide
-            //    animator.SetBool("ThiefToFlee", true);
-            //    animator.SetBool("ToSearch", false);
-            //    animator.SetBool("KO", false);
-            //    agent.ResetPath(); // Detener el movimiento hacia el waypoint
+            if (hit.collider.gameObject.CompareTag("Thief"))
+            {
+                Debug.Log("detecta Thief");
+                animator.SetBool("ToPursue", true); // Cambiar al estado Persue
+                 // Detener el movimiento hacia el waypoint
+            }
+            else if(hit.collider.gameObject.CompareTag("Thief"))
+            {
 
-            //}
+            }
+            
 
         }
 
@@ -62,6 +54,16 @@ public class PatrolBehaviour : StateMachineBehaviour
                 animator.SetBool("KO", true);
                 animator.SetBool("ToSearch", false);
                 animator.SetBool("ToSearch", false);
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            }
+
+            if (hitclose.collider.gameObject.CompareTag("Thief"))
+            {
+                Debug.Log("cambia a estado Attack");
+                animator.SetBool("ToAttack", true); // Cambiar al estado Attack
+                animator.SetBool("ToPursue", false);
+               
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
 
             }

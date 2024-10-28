@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public class AlertBehaviour : StateMachineBehaviour
+public class PursueBehaviour : StateMachineBehaviour
 {
     public float FollowDistance = 2f;
     public Transform Target; // Cambiar a Vector3
