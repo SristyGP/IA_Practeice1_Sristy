@@ -48,7 +48,7 @@ public class AttackBehaviour : StateMachineBehaviour
         }
 
         RaycastHit hitclose;
-        if (Physics.Raycast(rayOrigin, animator.transform.forward, out hitclose, 5f))
+        if (Physics.Raycast(rayOrigin, animator.transform.forward, out hitclose, 2f))
         {
             // Verifica si el Thief está en rango de ataque (2 metros o menos)
             if (hitclose.collider.CompareTag("Thief"))
