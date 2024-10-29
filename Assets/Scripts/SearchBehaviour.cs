@@ -30,10 +30,11 @@ public class SearchBehaviour : StateMachineBehaviour
             if (hit.collider.gameObject.CompareTag("Worker"))
             {
                 //Debug.Log("detecta Worker");
-                animator.SetBool("ToHide", true); // Cambiar al estado Hide
                 animator.SetBool("ThiefToFlee", false);
                 animator.SetBool("ToSearch", false);
                 animator.SetBool("KO", false);
+                animator.SetBool("ToHide", true); // Cambiar al estado Hide
+               
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
             }
             else if (hit.collider.gameObject.CompareTag("Guard"))
