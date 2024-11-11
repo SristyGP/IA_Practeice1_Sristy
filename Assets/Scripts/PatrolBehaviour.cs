@@ -12,7 +12,7 @@ public class PatrolBehaviour : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         agent.isStopped = false;
-        waypoints = animator.GetComponent<Agent>().waypoints;
+        waypoints = AiDirector.instance.waypoints;
         UpdateDestination();
     }
 

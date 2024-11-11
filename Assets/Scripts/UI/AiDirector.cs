@@ -4,6 +4,10 @@ public class AiDirector : MonoBehaviour
 {
     public static AiDirector instance;
     public Transform[]  Isalarmining;
+    public Transform[] waypoints;
+    public Transform target;
+    [HideInInspector] public int currentWaypointIndex;
+
     private void Awake()
     {
         if (instance == null)

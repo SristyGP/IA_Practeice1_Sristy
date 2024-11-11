@@ -16,7 +16,7 @@ public class SeekBehaviour : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         var Agent = animator.GetComponent<Agent>();
 
-        waypoints = Agent.waypoints;
+        waypoints = AiDirector.instance.waypoints;
         guard = GameObject.FindWithTag("Guard").transform;
         thief = GameObject.FindWithTag("Thief").transform;
 
