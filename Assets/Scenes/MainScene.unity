@@ -12504,7 +12504,7 @@ PrefabInstance:
     - target: {fileID: 2245669004186112466, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: InitialVelocity
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
@@ -35847,7 +35847,7 @@ PrefabInstance:
     - target: {fileID: 2289845803122276391, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
       propertyPath: m_Speed
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4429647094997668050, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
@@ -50213,7 +50213,7 @@ PrefabInstance:
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_Speed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
