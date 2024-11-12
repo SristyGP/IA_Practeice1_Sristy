@@ -9,6 +9,7 @@ TagManager:
   - Worker
   - Guard
   - Maintenance
+  - Interruptor
   layers:
   - Default
   - TransparentFX

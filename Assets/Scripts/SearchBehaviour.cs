@@ -12,7 +12,7 @@ public class SearchBehaviour : StateMachineBehaviour
     {
         agent = animator.GetComponent<NavMeshAgent>();
         agent.isStopped = false;
-        waypoints = AiDirector.instance.waypoints;
+        waypoints = AiDirector.instance.Thiefwaypoints;
         UpdateDestination();
     }
 

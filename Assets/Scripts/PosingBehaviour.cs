@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class PosingBehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    public Transform[] waypoints;
     int waypointIndex;
     public Transform target;
     private Vector3 rayOrigin; 
@@ -14,7 +13,7 @@ public class PosingBehaviour : StateMachineBehaviour
     {
         //Debug.Log("comienza el estado de flee");
         agent = animator.GetComponent<NavMeshAgent>();
-        waypoints = animator.GetComponent<Agent>().waypoints; 
+        
         UpdateDestination();
     }
 
@@ -33,7 +32,7 @@ public class PosingBehaviour : StateMachineBehaviour
                 Debug.Log("Thief detectado, activando huida");
                 animator.SetBool("ToPosing", false);
                 animator.SetBool("ToAffraid", false);
-                animator.SetBool("ToFlee", true);
+                animator.SetBool("ToWarning", true);
                 
             }
         }
@@ -46,14 +45,14 @@ public class PosingBehaviour : StateMachineBehaviour
 
     void UpdateDestination()
     {
-        target = waypoints[waypointIndex];
+        target = AiDirector.instance.Workerwaypoints[waypointIndex];
         agent.SetDestination(target.position);
     }
 
     void GoToNextWaypoint()
     {
         
-        waypointIndex = (waypointIndex + 1) % waypoints.Length;
+        waypointIndex = (waypointIndex + 1) % AiDirector.instance.Workerwaypoints.Length;
         UpdateDestination();
     } 
 }

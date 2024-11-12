@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SeekBehaviour : StateMachineBehaviour
+public class WarningBehaviour : StateMachineBehaviour
 {
-    
     private NavMeshAgent agent;
     private Transform[] waypoints;
     private Transform guard;
@@ -16,7 +15,7 @@ public class SeekBehaviour : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         var Agent = animator.GetComponent<Agent>();
 
-        waypoints = AiDirector.instance.Workerwaypoints;
+        waypoints = Agent.waypoints;
         guard = GameObject.FindWithTag("Guard").transform;
         thief = GameObject.FindWithTag("Thief").transform;
 
@@ -27,16 +26,16 @@ public class SeekBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Cuando llega al punto seguro, pasa a Affraid
+        // Cuando llega al punto seguro, activa la alarma y pasa a Affraid
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            animator.SetBool("ToSeek", false);
-            animator.SetBool("ToScan", false);
-            animator.SetBool("ToAttack", false); // Cambiar al estado Hide
-            animator.SetBool("ToScan", true);
+            // Activa la alarma en el AiDirector
+            AiDirector.instance.ActivateAlarm(thief.position);
 
-            agent.ResetPath(); // Detener el movimiento hacia el waypoint
+            // Cambia al estado de miedo
+            animator.SetBool("ToFlee", false);
+            animator.SetBool("ToPosing", false);
+            animator.SetBool("ToAffraid", true);
         }
     }
-    
 }
