@@ -35990,7 +35990,7 @@ PrefabInstance:
     - target: {fileID: 2289845803122276391, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
       propertyPath: m_Speed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4429647094997668050, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
@@ -50356,7 +50356,7 @@ PrefabInstance:
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_Speed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
@@ -71593,7 +71593,8 @@ MonoBehaviour:
   - {fileID: 1551601941}
   safePoints: []
   target: {fileID: 0}
-  Interruptor: {fileID: 70500390}
+  Interruptor:
+  - {fileID: 70500390}
   currentWaypointIndex: 0
 --- !u!1001 &2019975932
 PrefabInstance:

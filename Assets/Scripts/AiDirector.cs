@@ -12,7 +12,7 @@ public class AiDirector : MonoBehaviour
     public Transform[] Thiefwaypoints;         // Puntos de patrulla
     public List<Transform> safePoints;    // Puntos seguros para el Thief
     public Transform target;              // Punto de agrupamiento
-    public Transform Interruptor;
+    public Transform [] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
 
     // Evento de alarma
@@ -52,17 +52,29 @@ public class AiDirector : MonoBehaviour
         return Workerwaypoints[currentWaypointIndex];
     }
 
-    // Método para activar la alarma y notificar a todos los agentes
-    public void ActivateAlarm(Vector3 alertPosition)
+    // Método para encontrar el interruptor más cercano
+    public Transform GetClosestSwitchPoint(Vector3 workerPosition)
     {
-        Debug.Log("Alarma activada en la posición: " + alertPosition);
-        TriggerAlarm(alertPosition); // Llama a TriggerAlarm con la posición de alerta
+        Transform closestSwitch = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (Transform switchPoint in Interruptor)
+        {
+            float distance = Vector3.Distance(workerPosition, switchPoint.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestSwitch = switchPoint;
+            }
+        }
+        return closestSwitch;
     }
 
-    // Método privado para invocar el evento de alarma
-    private void TriggerAlarm(Vector3 alertPosition)
+    // Método para activar la alarma
+    public void TriggerAlarm(Vector3 alertPosition)
     {
-        OnAlarmTriggered?.Invoke(alertPosition); // Notifica a todos los suscriptores
+        Debug.Log("Alarma activada en la posición: " + alertPosition);
+        // Aquí se pueden implementar acciones adicionales para el estado de alarma
     }
 
 
