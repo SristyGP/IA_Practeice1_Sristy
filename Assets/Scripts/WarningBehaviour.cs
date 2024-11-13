@@ -5,6 +5,7 @@ public class WarningBehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
     private Transform switchPoint; // Punto de interruptor más cercano
+    private bool alarmActivated = false; // Asegura que la alarma solo se active una vez
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -26,11 +27,19 @@ public class WarningBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Si ha llegado al interruptor, activa la alarma
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        // Verifica si ha llegado al interruptor y aún no ha activado la alarma
+        if (!alarmActivated && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
             AiDirector.instance.TriggerAlarm(animator.transform.position); // Notifica la posición del Thief
-            animator.SetBool("ToAlarm", true); // Cambia al estado de alarma en la máquina de estados
+            alarmActivated = true; // Evita activar la alarma múltiples veces
+
+            // Cambia al estado de alarma en la máquina de estados
+            animator.SetBool("To Alarm", true);
+
+            // Resetea otras transiciones
+            animator.SetBool("ToFlee", false);
+            animator.SetBool("ToPosing", false);
+            animator.SetBool("ToAffraid", false);
         }
     }
 }
