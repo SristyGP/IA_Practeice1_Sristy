@@ -11,7 +11,7 @@ public class AiDirector : MonoBehaviour
     public Transform[] Workerwaypoints;         // Puntos de patrulla
     public Transform[] Thiefwaypoints;         // Puntos de patrulla
     public List<Transform> safePoints;    // Puntos seguros para el Thief
-    public Transform target;              // Punto de agrupamiento
+    public Transform  Puntodeagrupamiento;              // Punto de agrupamiento
     public Transform [] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
 
@@ -75,6 +75,10 @@ public class AiDirector : MonoBehaviour
     {
         Debug.Log("Alarma activada en la posición: " + alertPosition);
         // Aquí se pueden implementar acciones adicionales para el estado de alarma
+    }
+    public Transform GetPuntodeagrupamiento()
+    {
+        return Puntodeagrupamiento;
     }
 
 

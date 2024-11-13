@@ -2086,7 +2086,7 @@ Transform:
   m_GameObject: {fileID: 70500386}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.95, y: 7.53, z: 3.64}
+  m_LocalPosition: {x: 12.15, y: 7.53, z: 3.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71592,7 +71592,7 @@ MonoBehaviour:
   - {fileID: 1819780302}
   - {fileID: 1551601941}
   safePoints: []
-  target: {fileID: 0}
+  Puntodeagrupamiento: {fileID: 2062750359}
   Interruptor:
   - {fileID: 70500390}
   currentWaypointIndex: 0

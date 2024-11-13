@@ -4,45 +4,33 @@ using UnityEngine.AI;
 public class IsAlarmining : StateMachineBehaviour
 {
     private NavMeshAgent agent;
-    private Transform closestSafePoint;
+    private Transform Puntodeagrupamiento; // Punto de agrupamiento
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        agent.isStopped = false;
 
-        // Buscar el punto seguro más cercano utilizando el AiDirector
-        closestSafePoint = FindClosestSafePoint();
+        // Obtén el punto de agrupamiento desde el AI Director
+        Puntodeagrupamiento = AiDirector.instance.GetPuntodeagrupamiento();
 
-        if (closestSafePoint != null)
+        // Muévete hacia el punto de agrupamiento
+        if (Puntodeagrupamiento != null)
         {
-            // Configurar el destino del agente hacia el punto seguro
-            agent.SetDestination(closestSafePoint.position);
+            agent.SetDestination(Puntodeagrupamiento.position);
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró un punto de agrupamiento.");
         }
     }
 
-    // Método para encontrar el punto seguro más cercano
-    private Transform FindClosestSafePoint()
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Transform closestPoint = null;
-        float closestDistance = Mathf.Infinity;
-
-        foreach (Transform safePoint in AiDirector.instance.safePoints)
+        // Verifica si el `Worker` ha llegado al punto de agrupamiento
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            float distance = Vector3.Distance(agent.transform.position, safePoint.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestPoint = safePoint;
-            }
+            Debug.Log("Worker ha llegado al punto de agrupamiento.");
+            // Aquí podrías añadir cualquier comportamiento adicional si es necesario
         }
-
-        return closestPoint;
-    }
-
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // Detener el agente cuando salga del estado de alarma
-        agent.isStopped = true;
     }
 }
