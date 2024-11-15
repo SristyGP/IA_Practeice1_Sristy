@@ -29,11 +29,17 @@ public class IsAlarmining : StateMachineBehaviour
         // Verifica si el `Worker` ha llegado al punto de agrupamiento
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            animator.SetBool("ToFlee", false);
-            animator.SetBool("ToPosing", false);
             animator.SetBool("ToAffraid", true);
             Debug.Log("Worker ha llegado al punto de agrupamiento.");
             // Aquí podrías añadir cualquier comportamiento adicional si es necesario
         }
+    }
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetBool("ToFlee", false);
+        animator.SetBool("ToPosing", false);
+        animator.SetBool("ToAffraid", false);
+        animator.SetBool("To Alarm", false);
+        animator.SetBool("ToWarning", false);
     }
 }

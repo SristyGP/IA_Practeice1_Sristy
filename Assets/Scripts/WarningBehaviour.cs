@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class WarningBehaviour : StateMachineBehaviour
 {
@@ -37,9 +38,6 @@ public class WarningBehaviour : StateMachineBehaviour
             animator.SetBool("To Alarm", true);
 
             // Resetea otras transiciones
-            animator.SetBool("ToFlee", false);
-            animator.SetBool("ToPosing", false);
-            animator.SetBool("ToAffraid", false);
         }
     }
 }
