@@ -15,9 +15,13 @@ public class AiDirector : MonoBehaviour
     public Transform [] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
 
+
+    [SerializeField] private GameObject[] Workers;
+    [SerializeField] private GameObject[] Thiefs;
+    [SerializeField] private GameObject[] Guards;
     // Evento de alarma
-    public delegate void AlarmEvent(Vector3 position);
-    public static event AlarmEvent OnAlarmTriggered;
+    //public delegate void AlarmEvent(Vector3 position);
+    //public static event AlarmEvent OnAlarmTriggered;
 
     private void Awake()
     {
@@ -34,8 +38,10 @@ public class AiDirector : MonoBehaviour
 
     private void Start()
     {
-        // Detecta los agentes en la escena al inicio
-        // DetectAgents();  // Puedes activar esto si quieres detectar los agentes en Start
+        //Detecta a los agentes en la escena
+        Guards = GameObject.FindGameObjectsWithTag("Guard");
+        Thiefs = GameObject.FindGameObjectsWithTag("Thief");
+        Workers = GameObject.FindGameObjectsWithTag("Worker");
     }
 
     // Método para suministrar el siguiente punto de patrulla alcanzable
