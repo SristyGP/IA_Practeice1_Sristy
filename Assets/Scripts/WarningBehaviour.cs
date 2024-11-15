@@ -35,7 +35,6 @@ public class WarningBehaviour : StateMachineBehaviour
             alarmActivated = true; // Evita activar la alarma múltiples veces
 
             // Cambia al estado de alarma en la máquina de estados
-            animator.SetBool("To Alarm", true);
 
             // Resetea otras transiciones
         }

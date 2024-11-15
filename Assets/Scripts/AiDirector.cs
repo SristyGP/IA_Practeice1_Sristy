@@ -10,9 +10,9 @@ public class AiDirector : MonoBehaviour
     public Transform[] Guardwaypoints;         // Puntos de patrulla
     public Transform[] Workerwaypoints;         // Puntos de patrulla
     public Transform[] Thiefwaypoints;         // Puntos de patrulla
-    public List<Transform> safePoints;    // Puntos seguros para el Thief
+    public Transform[] SafePoints;    // Puntos seguros para el Thief
     public Transform  Puntodeagrupamiento;              // Punto de agrupamiento
-    public Transform [] Interruptor; // interruptor
+    public Transform[] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
 
 
@@ -75,12 +75,41 @@ public class AiDirector : MonoBehaviour
         }
         return closestSwitch;
     }
+    public Transform GetClosestSafePoint(Vector3 currentPosition)
+    {
+        Transform closest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (Transform safePoint in SafePoints)
+        {
+            float distance = Vector3.Distance(currentPosition, safePoint.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closest = safePoint;
+            }
+        }
+
+        return closest;
+    }
 
     // Método para activar la alarma
     public void TriggerAlarm(Vector3 alertPosition)
     {
         Debug.Log("Alarma activada en la posición: " + alertPosition);
         // Aquí se pueden implementar acciones adicionales para el estado de alarma
+
+        //Afecta a todos los workers de la escena
+        foreach (GameObject workers in Workers) 
+        {
+            Animator animator = workers.GetComponent<Animator>();
+            animator.SetBool("To Alarm", true);
+        }
+        foreach (GameObject thiefs in Thiefs)
+        {
+            Animator animator = thiefs.GetComponent<Animator>(); // accedo a la variable creada thiefs
+            animator.SetBool("ToAlarm", true);
+        }
     }
     public Transform GetPuntodeagrupamiento()
     {
