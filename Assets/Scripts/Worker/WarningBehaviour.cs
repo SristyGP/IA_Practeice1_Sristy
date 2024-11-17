@@ -34,9 +34,7 @@ public class WarningBehaviour : StateMachineBehaviour
             //AiDirector.instance.TriggerAlarm(animator.transform.position); // Notifica la posición del Interruptor
             alarmActivated = true; // Evita activar la alarma múltiples veces
 
-            // Cambia al estado de alarma en la máquina de estados
-
-            // Resetea otras transiciones
+           
         }
     }
 }

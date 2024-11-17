@@ -71,9 +71,9 @@ public class PatrolBehaviour : StateMachineBehaviour
 
             if (!alarmActivated && !agent.pathPending && agent.remainingDistance < 0.5f)
             {
-              
+                Debug.Log("cambia de estado alarmaGuard");
                 alarmActivated = true; // Evita activar la alarma múltiples veces
-
+                animator.SetBool("AlarmGuard", true);
 
             }
         }

@@ -25,9 +25,7 @@ public class AiDirector : MonoBehaviour
     [SerializeField] private GameObject[] Workers;
     [SerializeField] private GameObject[] Thiefs;
     [SerializeField] private GameObject[] Guards;
-    // Evento de alarma
-    //public delegate void AlarmEvent(Vector3 position);
-    //public static event AlarmEvent OnAlarmTriggered;
+    
 
     private void Awake()
     {
@@ -119,7 +117,9 @@ public class AiDirector : MonoBehaviour
         }
         foreach (GameObject guards in Guards)
         {
-            Animator animator = guards.GetComponent<Animator>(); // accedo a la variable creada guards
+            Debug.Log("Guardia detectado ");
+
+          Animator animator = guards.GetComponent<Animator>(); // accedo a la variable creada guards
             animator.SetBool("ToAlarmGuard", true);
         }
 
