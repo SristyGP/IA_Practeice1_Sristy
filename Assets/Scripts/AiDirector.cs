@@ -7,6 +7,10 @@ public class AiDirector : MonoBehaviour
 
     // Puntos de interés
     public Transform[] Isalarmining;      // Puntos de alarma
+    private float AlarmDuration = 15.0f; // duración de la alarma activada
+    private float alarmStartTime;
+    public bool isAlarmActive = false; // Estado de la alarma
+
     public Transform[] Guardwaypoints;         // Puntos de patrulla
     public Transform[] Workerwaypoints;         // Puntos de patrulla
     public Transform[] Thiefwaypoints;         // Puntos de patrulla
@@ -14,6 +18,8 @@ public class AiDirector : MonoBehaviour
     public Transform  Puntodeagrupamiento;              // Punto de agrupamiento
     public Transform[] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
+
+    
 
 
     [SerializeField] private GameObject[] Workers;
@@ -97,7 +103,8 @@ public class AiDirector : MonoBehaviour
     public void TriggerAlarm(Vector3 alertPosition)
     {
         Debug.Log("Alarma activada en la posición: " + alertPosition);
-        // Aquí se pueden implementar acciones adicionales para el estado de alarma
+        isAlarmActive = true; // Activa la alarma
+        alarmStartTime = Time.time; // Registra el momento de inicio de la alarma
 
         //Afecta a todos los workers de la escena
         foreach (GameObject workers in Workers) 
@@ -109,6 +116,23 @@ public class AiDirector : MonoBehaviour
         {
             Animator animator = thiefs.GetComponent<Animator>(); // accedo a la variable creada thiefs
             animator.SetBool("ToAlarm", true);
+        }
+        foreach (GameObject guards in Guards)
+        {
+            Animator animator = guards.GetComponent<Animator>(); // accedo a la variable creada guards
+            animator.SetBool("ToAlarm", true);
+        }
+
+       
+    }
+
+    private void Update()
+    {
+         if (isAlarmActive && Time.time - alarmStartTime >= AlarmDuration)
+        {
+            Debug.Log("La alarma se ha desactivado tras 5 segundos.");
+            isAlarmActive = false; // Desactiva el estado de la alarma
+
         }
     }
     public Transform GetPuntodeagrupamiento()

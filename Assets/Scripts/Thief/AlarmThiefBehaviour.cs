@@ -13,15 +13,24 @@ public class AlarmThiefBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Verifica si el Thief ha llegado al punto seguro
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             Debug.Log("Thief ha llegado al punto seguro.");
 
-            // Aquí activas la transición para que vuelva al estado "Search"
-            animator.SetBool("ToSearch", true);  // Cambia al estado de búsqueda cuando llega al punto seguro
+            // Verifica si la alarma está desactivada
+            if (!AiDirector.instance.isAlarmActive)
+            {
+                Debug.Log("La alarma está desactivada. Cambiando al estado 'Search'.");
+                animator.SetBool("ToSearch", true);  // Cambia al estado de búsqueda
+                animator.SetBool("ToAlarm", false);  // Asegúrate de desactivar el estado de alarma
+            }
+            else
+            {
+                Debug.Log("La alarma sigue activa. Permaneciendo en el punto seguro.");
+            }
         }
-    }
 
     // Método para obtener el punto seguro más cercano
+    }
 }
+
