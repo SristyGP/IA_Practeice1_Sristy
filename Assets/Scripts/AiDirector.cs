@@ -140,5 +140,11 @@ public class AiDirector : MonoBehaviour
         return Puntodeagrupamiento;
     }
 
+    public void ReportThiefPosition(Vector3 position)
+    {
+        Debug.Log("Thief detectado en la posición: " + position);
+        // Aquí puedes añadir lógica adicional, como alertar a los Guards o registrar la posición
+    }
+
 
 }

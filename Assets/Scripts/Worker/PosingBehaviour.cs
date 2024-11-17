@@ -7,7 +7,8 @@ public class PosingBehaviour : StateMachineBehaviour
     private NavMeshAgent agent;
     int waypointIndex;
     public Transform target;
-    private Vector3 rayOrigin; 
+    private Vector3 rayOrigin;
+    private bool alarmActivated = false; // Asegura que la alarma solo se active una vez
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -26,15 +27,22 @@ public class PosingBehaviour : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hit, 5f))
         {
-           //Debug.Log("detección");
-            if (hit.collider.gameObject.CompareTag ("Thief")) 
+            if (hit.collider.gameObject.CompareTag("Thief"))
             {
                 Debug.Log("Thief detectado, activando huida");
+
+
+                // Obtener las coordenadas del Thief detectado
+                Vector3 thiefPosition = hit.collider.transform.position;
+                Debug.Log("Comunicar las coordenadas al AiDirector");
+                AiDirector.instance.ReportThiefPosition(thiefPosition);
+
                 animator.SetBool("ToPosing", false);
                 animator.SetBool("ToAffraid", false);
                 animator.SetBool("ToWarning", true);
-                
             }
+
+         
         }
 
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
@@ -42,6 +50,8 @@ public class PosingBehaviour : StateMachineBehaviour
             GoToNextWaypoint();
         }
     }
+
+   
 
     void UpdateDestination()
     {
