@@ -120,7 +120,7 @@ public class AiDirector : MonoBehaviour
         foreach (GameObject guards in Guards)
         {
             Animator animator = guards.GetComponent<Animator>(); // accedo a la variable creada guards
-            animator.SetBool("ToAlarm", true);
+            animator.SetBool("ToAlarmGuard", true);
         }
 
        

@@ -7,6 +7,7 @@ public class PatrolBehaviour : StateMachineBehaviour
     public Transform[] waypoints;
     private int waypointIndex;
     private Vector3 rayOrigin;
+    private bool alarmActivated = false;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -65,6 +66,14 @@ public class PatrolBehaviour : StateMachineBehaviour
                 animator.SetBool("ToPursue", false);
                
                 agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            }
+
+            if (!alarmActivated && !agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+              
+                alarmActivated = true; // Evita activar la alarma múltiples veces
+
 
             }
         }
