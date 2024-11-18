@@ -37,7 +37,6 @@ public class SearchBehaviour : StateMachineBehaviour
                 {
                     animator.SetBool("ThiefToFlee", false);
                     animator.SetBool("ToSearch", false);
-                    animator.SetBool("KO", false);
                     animator.SetBool("ToHide", true); // Cambiar al estado Hide
                     agent.ResetPath(); // Detener el movimiento hacia el waypoint
                 }
@@ -46,7 +45,6 @@ public class SearchBehaviour : StateMachineBehaviour
                     animator.SetBool("ToHide", false);
                     animator.SetBool("ThiefToFlee", true);
                     animator.SetBool("ToSearch", false);
-                    animator.SetBool("KO", false);
                     agent.ResetPath(); // Detener el movimiento hacia el waypoint
                 }
             

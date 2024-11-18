@@ -60,7 +60,10 @@ public class AttackBehaviour : StateMachineBehaviour
                     animator.SetBool("ToPatrol", false);
                     animator.SetBool("ToAttack", false); // Desactiva el estado Attack
                     animator.SetBool("ToPursue", true); // Cambiar al estado Pursue
-                    
+                }
+                else
+                {
+                    hitclose.collider.gameObject.GetComponent<Animator>().SetBool("KO", true);
                 }
 
 
