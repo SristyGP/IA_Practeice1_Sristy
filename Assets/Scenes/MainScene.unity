@@ -12677,7 +12677,7 @@ PrefabInstance:
     - target: {fileID: 2245669004186112466, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
       propertyPath: InitialVelocity
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3104935084932959775, guid: f26ab5f363d1fe845ba646c708192930,
         type: 3}
@@ -36148,7 +36148,7 @@ PrefabInstance:
     - target: {fileID: 2289845803122276391, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
       propertyPath: m_Speed
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4429647094997668050, guid: e2b01b6af1cc5ea48a8d745ad21f159b,
         type: 3}
@@ -50547,7 +50547,7 @@ PrefabInstance:
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_Speed
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 958283529810106094, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
@@ -50587,7 +50587,7 @@ PrefabInstance:
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.33
+      value: 7.86
       objectReference: {fileID: 0}
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
@@ -50597,7 +50597,7 @@ PrefabInstance:
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.85
+      value: -17.75
       objectReference: {fileID: 0}
     - target: {fileID: 4429647094997668050, guid: 6172e1b716cccfc4b8e6e491d4b0ab02,
         type: 3}
@@ -71832,6 +71832,7 @@ MonoBehaviour:
   Interruptor:
   - {fileID: 70500390}
   currentWaypointIndex: 0
+  thiefReportedPosition: {x: 0, y: 0, z: 0}
   Workers: []
   Thiefs: []
   Guards: []

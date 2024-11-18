@@ -18,8 +18,8 @@ public class AiDirector : MonoBehaviour
     public Transform  Puntodeagrupamiento;              // Punto de agrupamiento
     public Transform[] Interruptor; // interruptor
     [HideInInspector] public int currentWaypointIndex;
+    public Vector3 thiefReportedPosition;
 
-    
 
 
     [SerializeField] private GameObject[] Workers;
@@ -130,7 +130,7 @@ public class AiDirector : MonoBehaviour
     {
          if (isAlarmActive && Time.time - alarmStartTime >= AlarmDuration)
         {
-            Debug.Log("La alarma se ha desactivado tras 5 segundos.");
+            Debug.Log("La alarma se ha desactivado tras 15 segundos.");
             isAlarmActive = false; // Desactiva el estado de la alarma
 
         }
@@ -143,7 +143,7 @@ public class AiDirector : MonoBehaviour
     public void ReportThiefPosition(Vector3 position)
     {
         Debug.Log("Thief detectado en la posición: " + position);
-        // Aquí puedes añadir lógica adicional, como alertar a los Guards o registrar la posición
+        thiefReportedPosition = position;
     }
 
 
