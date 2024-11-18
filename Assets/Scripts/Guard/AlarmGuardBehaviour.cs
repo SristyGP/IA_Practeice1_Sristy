@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class AlarmGuardBehaviour : StateMachineBehaviour
 {
     private NavMeshAgent agent;
+    private Vector3 rayOrigin;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -26,7 +27,8 @@ public class AlarmGuardBehaviour : StateMachineBehaviour
         animator.SetBool("ToPatrol", false);
         animator.SetBool("ToPursue", false);
         animator.SetBool("ToScan", false);
-        
+
+
 
 
         Debug.Log("Guardia bloqueado en estado de alarma.");
@@ -34,12 +36,32 @@ public class AlarmGuardBehaviour : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Mantén al guardia en estado de alarma mientras sea necesario
-        if (!AiDirector.instance.isAlarmActive)
+        rayOrigin = animator.transform.position + new Vector3(0, 0.5f, 0);
+        Debug.DrawRay(rayOrigin, animator.transform.TransformDirection(Vector3.forward) * 10, Color.red);
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            Debug.Log("La alarma se ha desactivado. Regresando al estado de patrulla.");
-            animator.SetBool("ToPatrol", true); // Transición de regreso a patrulla
-            animator.SetBool("ToAlarmGuard", false); // Sale del estado de alarma
+            animator.SetBool("ToScan", true);
+
+        }
+        RaycastHit hitclose;
+        if (Physics.Raycast(rayOrigin, animator.transform.TransformDirection(Vector3.forward), out hitclose, 5f))
+        {
+
+
+            if (hitclose.collider.gameObject.CompareTag("Thief"))
+            {
+                Debug.Log("cambia a estado Pursue");
+
+                animator.SetBool("ToPursue", true); // Cambiar al estado Attack
+
+
+                agent.ResetPath(); // Detener el movimiento hacia el waypoint
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
