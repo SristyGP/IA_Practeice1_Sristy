@@ -146,5 +146,4 @@ public class AiDirector : MonoBehaviour
         thiefReportedPosition = position;
     }
 
-
 }

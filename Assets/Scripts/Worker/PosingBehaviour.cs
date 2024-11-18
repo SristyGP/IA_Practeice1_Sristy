@@ -35,7 +35,7 @@ public class PosingBehaviour : StateMachineBehaviour
                 // Obtener las coordenadas del Thief detectado
                 Vector3 thiefPosition = hit.collider.transform.position;
                 Debug.Log("Comunicar las coordenadas al AiDirector");
-                AiDirector.instance.ReportThiefPosition(thiefPosition);
+                AiDirector.instance.ReportThiefPosition(hit.collider.transform.position);
 
                 animator.SetBool("ToPosing", false);
                 animator.SetBool("ToAffraid", false);
