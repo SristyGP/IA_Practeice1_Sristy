@@ -31,7 +31,7 @@ public class WarningBehaviour : StateMachineBehaviour
         // Verifica si ha llegado al interruptor y aún no ha activado la alarma
         if (!alarmActivated && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            //AiDirector.instance.TriggerAlarm(animator.transform.position); // Notifica la posición del Interruptor
+            AiDirector.instance.TriggerAlarm(animator.transform.position); // Notifica la posición del Interruptor
             alarmActivated = true; // Evita activar la alarma múltiples veces
 
            
