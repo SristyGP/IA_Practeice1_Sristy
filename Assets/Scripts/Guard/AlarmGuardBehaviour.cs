@@ -11,7 +11,6 @@ public class AlarmGuardBehaviour : StateMachineBehaviour
 
         // Obtener las coordenadas del AI Director
         Vector3 targetPosition = AiDirector.instance.thiefReportedPosition;
-
         // Asignar el destino al guardia
         if (targetPosition != Vector3.zero) // Verifica que las coordenadas sean válidas
         {

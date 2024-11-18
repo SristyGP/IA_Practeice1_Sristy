@@ -108,19 +108,21 @@ public class AiDirector : MonoBehaviour
         foreach (GameObject workers in Workers) 
         {
             Animator animator = workers.GetComponent<Animator>();
-            animator.SetBool("To Alarm", true);
+            //animator.SetBool("To Alarm", true); - boleano
+            animator.SetTrigger("ToAlarm"); 
         }
         foreach (GameObject thiefs in Thiefs)
         {
             Animator animator = thiefs.GetComponent<Animator>(); // accedo a la variable creada thiefs
-            animator.SetBool("ToAlarm", true);
+            animator.SetTrigger("ToAlarmThief");
         }
         foreach (GameObject guards in Guards)
         {
             Debug.Log("Guardia detectado ");
 
           Animator animator = guards.GetComponent<Animator>(); // accedo a la variable creada guards
-            animator.SetBool("ToAlarmGuard", true);
+            
+            animator.SetTrigger("ToAlarmGuard");
         }
 
        
@@ -133,6 +135,11 @@ public class AiDirector : MonoBehaviour
             Debug.Log("La alarma se ha desactivado tras 15 segundos.");
             isAlarmActive = false; // Desactiva el estado de la alarma
 
+            foreach (GameObject thiefs in Thiefs)
+            {
+                Animator animator = thiefs.GetComponent<Animator>(); // accedo a la variable creada thiefs
+                animator.SetTrigger("ToSearch");
+            }
         }
     }
     public Transform GetPuntodeagrupamiento()
